@@ -1,40 +1,46 @@
-From: Marshall Lake <mlake@melake.erols.com>
-Subject: Re: XDM Suddenly Doesn't Start on Boot
-Date: Tue, 17 Sep 2002 19:05:50 -0400 (EDT)
+From: "Jiri Hladky" <hladky.jiri@seznam.cz>
+Subject: Configuring mouse for XTerm
+Date: Fri, 22 Nov 2002 12:43:53 -0000
 Sender: linux-x11-owner@vger.kernel.org
-Message-ID: <Pine.LNX.4.21.0209171900540.1900-100000@melake.erols.com>
-References: <15751.44568.225724.78384@cerise.nosuchdomain.co.uk>
+Message-ID: <NJENKOEGKMPDEHAMPCBBAEOACAAA.hladky.jiri@seznam.cz>
+Reply-To: <hladky.jiri@seznam.cz>
 Mime-Version: 1.0
-Return-path: <linux-x11-owner@vger.kernel.org>
-In-Reply-To: <15751.44568.225724.78384@cerise.nosuchdomain.co.uk>
-List-Id: <linux-x11.vger.kernel.org>
-Content-Type: TEXT/PLAIN; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-To: Glynn Clements <glynn.clements@virgin.net>
-Cc: linux-admin@vger.kernel.org, linux-x11@vger.kernel.org
+Return-path: <linux-x11-owner@vger.kernel.org>
+List-Id: <linux-x11.vger.kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+To: linux-x11@vger.kernel.org
+
+Hello!
+
+Perhaps can somebody help me with the following problem:
+
+I would like to change the behaviour of third button mouse in the xterm. It
+should execute My_shell_script and as the argument of this command the text
+selected in xterm should be used. The idea is to select the
+name_of_the_file, third button click, and the application, which can work
+with file, will be started.
+
+I think that the syntax should be like:
+<Btn3Down> : string ("My_shell_script") insert-selection(PRIMARY,
+CUT-BUFFER0)
+string(0x0d) \n\\
+
+However, I don't know where to add this definition. I have tried to edit the
+files
+/root/.Xdefaults
+/usr/lib/X11/app_defaults/XTerm
+/usr/lib/X11/app_defaults/XTerm-Color
+
+No succes, the behaviour of the third mouse button didn't change. I'm also
+not sure which string should precede <Btn3Down>...
+Something like *VT100* or *VT102* or perhaps xterm_color*VT100.Translations?
+
+I would appreciate any help. If you know how to define this behaviour for
+KDE konsole, it would be even better than for xterm.
+
+Many thanks!
+Jiri
 
 
-> > Both /usr/lib/X11/xdm/xdm-config and /etc/X11/xdm/xdm-config contain a
-> > line pointing to /var/log/xdm-error.log but that file is empty.
-
-> Is the date stamp recent? If not, that would suggest that xdm isn't
-> getting run.
-
-The date stamp is more than a year old ... probably from when I first
-installed the system.
-
-> BTW, just to check the obvious, inittab is configured to start in
-> runlevel 5:
-> 	id:5:initdefault:
-> right?
-
-Well, I'll be ... the run level was set at 3.  When I changed it to 5 xdm
-runs at boot.  How in the world did it get set to 3?  I haven't messed
-with that file in months (more than 6) and I've rebooted several times in
-the past two to three months.  I must be losin' it.
-
-Thanks for the help.
-
--- 
-Marshall Lake -- mlake@melake.erols.com -- http://melake.erols.com
 
