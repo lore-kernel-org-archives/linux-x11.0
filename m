@@ -1,49 +1,60 @@
-From: Marshall Lake <mlake@melake.erols.com>
+From: Glynn Clements <glynn.clements@virgin.net>
 Subject: Re: XDM Suddenly Doesn't Start on Boot
-Date: Tue, 17 Sep 2002 18:08:29 -0400 (EDT)
+Date: Tue, 17 Sep 2002 23:35:04 +0100
 Sender: linux-x11-owner@vger.kernel.org
-Message-ID: <Pine.LNX.4.21.0209171803410.3191-100000@melake.erols.com>
+Message-ID: <15751.44568.225724.78384@cerise.nosuchdomain.co.uk>
 References: <15751.39658.789951.297701@cerise.nosuchdomain.co.uk>
+	<Pine.LNX.4.21.0209171803410.3191-100000@melake.erols.com>
 Mime-Version: 1.0
-Return-path: <linux-x11-owner@vger.kernel.org>
-In-Reply-To: <15751.39658.789951.297701@cerise.nosuchdomain.co.uk>
-List-Id: <linux-x11.vger.kernel.org>
-Content-Type: TEXT/PLAIN; charset="us-ascii"
 Content-Transfer-Encoding: 7bit
-To: Glynn Clements <glynn.clements@virgin.net>
+Return-path: <linux-x11-owner@vger.kernel.org>
+In-Reply-To: <Pine.LNX.4.21.0209171803410.3191-100000@melake.erols.com>
+List-Id: <linux-x11.vger.kernel.org>
+Content-Type: text/plain; charset="us-ascii"
+To: Marshall Lake <mlake@melake.erols.com>
 Cc: linux-admin@vger.kernel.org, linux-x11@vger.kernel.org
 
 
-> > I'm running 2.4.19 on an Intel box.  I haven't had to reboot for at
-> > least a month but suddenly now when I do reboot XDM does not start and I
-> > get the error message:
-> > rshd: getpeername: Socket operation on non-socket
+Marshall Lake wrote:
 
-> What does rshd have to do with xdm?
+> > > I start XDM from the last line in /etc/inittab:
+> > > x:5:respawn:/etc/X11/prefdm -nodaemon
+> 
+> > By default, XDM logs any errors to /var/log/xdm-errors, although this
+> > can be changed via the xdm-config file (typically either
+> > /usr/lib/X11/xdm/xdm-config or /etc/X11/xdm/xdm-config).
+> 
+> Both /usr/lib/X11/xdm/xdm-config and /etc/X11/xdm/xdm-config contain a
+> line pointing to /var/log/xdm-error.log but that file is empty.
 
-I don't know.  The error message above is the only one that shows at boot,
-and xdm seems to be the only thing that's not running properly, so I
-figured that there might be a connection.
+Is the date stamp recent? If not, that would suggest that xdm isn't
+getting run.
 
-> For that matter, why are you running rshd at all?
+> > Does /etc/sysconfig/desktop exist? What does it contain?
+> 
+> That file doesn't exist.
 
-I run rsync on my internal network for backup purposes and it seems to
-need rshd to run.
+The contents of that file determine which display manager is used (at
+least, that's the case for RedHat 6.2; examine the /etc/X11/prefdm
+script to confirm which file is actually used).
 
-> > I start XDM from the last line in /etc/inittab:
-> > x:5:respawn:/etc/X11/prefdm -nodaemon
+If the file doesn't exist, or it doesn't contain the right data, the
+prefdm script looks for gdm, kdm an xdm, in that order, and uses the
+first one which it finds. IOW, xdm will only be used if neither gdm
+nor kdm can be found. If xdm can't be found either, prefdm will exit
+without starting any display manager (and without displaying any error
+message of its own).
 
-> By default, XDM logs any errors to /var/log/xdm-errors, although this
-> can be changed via the xdm-config file (typically either
-> /usr/lib/X11/xdm/xdm-config or /etc/X11/xdm/xdm-config).
+Personally, I changed inittab to start xdm directly:
 
-Both /usr/lib/X11/xdm/xdm-config and /etc/X11/xdm/xdm-config contain a
-line pointing to /var/log/xdm-error.log but that file is empty.
+	x:5:respawn:/usr/X11R6/bin/xdm -nodaemon
 
-> Does /etc/sysconfig/desktop exist? What does it contain?
+BTW, just to check the obvious, inittab is configured to start in
+runlevel 5:
 
-That file doesn't exist.
+	id:5:initdefault:
+
+right?
 
 -- 
-Marshall Lake -- mlake@melake.erols.com -- http://melake.erols.com
-
+Glynn Clements <glynn.clements@virgin.net>
