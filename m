@@ -1,42 +1,42 @@
-From: "Jeff Beardsley" <jeff.beardsley@fuellinks.com>
-Subject: RE: X11 terminal
-Date: Mon, 8 Jul 2002 09:56:02 -0500
+From: damon fasching <damon3937@yahoo.com>
+Subject: xfree86 configuration
+Date: Thu, 1 Aug 2002 19:30:23 -0700 (PDT)
 Sender: linux-x11-owner@vger.kernel.org
-Message-ID: <OKEELJHAJFIHOCNIPGPJCEJBCEAA.jeff.beardsley@fuellinks.com>
-References: <1025950786.15272.15.camel@tuxedo.homelinux.com>
+Message-ID: <20020802023023.47410.qmail@web20806.mail.yahoo.com>
 Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
 Return-path: <linux-x11-owner@vger.kernel.org>
-In-Reply-To: <1025950786.15272.15.camel@tuxedo.homelinux.com>
 List-Id: <linux-x11.vger.kernel.org>
 Content-Type: text/plain; charset="us-ascii"
-To: linux-x11@vger.kernel.org
+Content-Transfer-Encoding: 7bit
+To: linux-x11@vger.kernel.org, linux-laptop@vger.kernel.org
+Cc: dpfasching@lbl.gov
 
-In some (most?) window managers, you can specify that a window have no
-border -- in Sawfish you would specify a Frame Type of None. Not sure off
-hand if the same terminology applies to other window managers, but I have
-definitely done this in both Sawfish and Enlightenment.
+Hi,
 
---jeff beardsley
+I'm setting up linux 2.2 on a Presario 721 and am
+having trouble getting my xserver to start, at least I
+assume that is why startx crashes.  Does someone know
+what xserver I need to install?  The video chipset is
+a VIA KN133, which according to the VIA site has
+"integrated S3 graphics ... ".  I found in my
+distribution an xserver-s3 and so installed that.  
+I'm not even sure if the xserver is the problem.  My
+monitor resolution is 1024x768.  I selected that with
+75 Hz refresh.
 
------Original Message-----
-From: linux-x11-owner@vger.kernel.org
-[mailto:linux-x11-owner@vger.kernel.org]On Behalf Of Shaun W. Grogan
-Sent: Saturday, July 06, 2002 5:20 AM
-To: linux-x11@vger.kernel.org
-Subject: X11 terminal
+If someone knows what xserver I need, that would at
+least narrow my troubleshooting permutations down by a
+factor of 10 (the number of xservers I have
+avaialable.)
+
+Any other tips, for example a completed XF86Config
+file for Presario 721 ;) would be greatly appreciated.
+
+Thanks,
+  Damon
 
 
-What I want to do is have a tail of my logs displayed on my desktop.  Is
-there a way to make a borderless terminal?  Or some other way to achieve
-this?  Basically I want the tail to look like it is part of the desktop.
-
-Shaun W. Grogan
-
-
-
--
-To unsubscribe from this list: send the line "unsubscribe linux-x11" in
-the body of a message to majordomo@vger.kernel.org
-More majordomo info at  http://vger.kernel.org/majordomo-info.html
-
+__________________________________________________
+Do You Yahoo!?
+Yahoo! Health - Feel better, live better
+http://health.yahoo.com
