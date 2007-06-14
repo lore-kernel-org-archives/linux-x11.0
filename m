@@ -1,30 +1,52 @@
-From: Hossein Mobahi <hmobahi@yahoo.com>
-Subject: Measuring mouse click and typing rate in X
-Date: Mon, 18 Apr 2005 00:06:01 -0700 (PDT)
-Message-ID: <20050418070601.11331.qmail@web80012.mail.yahoo.com>
+From: Davide Nitti <davidenitti@gmail.com>
+Subject: Random X lockup
+Date: Fri, 15 Jun 2007 01:02:05 +0200
+Message-ID: <4671C8ED.9050703@gmail.com>
 Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Return-path: <linux-x11-owner@vger.kernel.org>
 Sender: linux-x11-owner@vger.kernel.org
 List-Id: <linux-x11.vger.kernel.org>
-Content-Type: text/plain; charset="windows-1252"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="us-ascii"; format="flowed"
 To: linux-x11@vger.kernel.org
 
-Hi folks
+I have a problem with X, I have random lockup of X, when happen i can't 
+use mouse or keyboard.
+Using a SSH remote session I can see that X taking 99.9% cpu.
+I have this problem with all version of kernel, linux distributions, 
+xorg versions.
+Reading some forum, I can conclude:
 
-I want to measure user=92s typing rate and mouse click
-rate in X environment. I am looking for the simplest
-way to do this, i.e. minimal need of coding. I think
-the most reasonable solution is an intterupt-driven
-program. Is there any source code showing how to use
-interrupts in a similiar application so that I can
-adapt it for my purpose with least effort? If not,
-what about any relevant logging capability that I can
-read its log file each second to obtain this
-statistics?
+- The crash occurs on various hardware
+-- CPU: P4 3Ghz, AMD Athlon Thunderbird 1400, AMD Athlon 900Mhz, Athlon 
+XP 1500+, Pentium III 866MHz
+-- GFX cards: Radeon 9200, Radeon 9700, NVidia GeForce2 GTS/Pro, GeForce 
+Ultra 5700, Geforce FX 5200
+-- M/B: Abit AT7 (VIA KT333), SiS P4S61, (TODO add more mobos)
+-- Mem: various sizes
 
-Thnx
+- It occurs on various w/ms like: kde, gnome, ion2, fluxbox
 
---Hossein Mobahi
+- It occurs on various kernel versions: 2.4.23-ck1 - 2.6.21
 
+- It occurs on various X versions:
+--XFree 4.3 - ??
+--Xorg up to 7.2
 
+-Reports in various distributions: debian, mandrake, fedora, gentoo, 
+ubuntu, opensuse
+
+Sympthoms:
+
+- X CPU usage 100%
+- Keyboard is not working
+- Mouse is working but nothing is clickable (in some cases mouse is not 
+working any more)
+- Magic SysRq is possible
+- SSHing in from remote server and killing X is possible.
+
+I can't solve this problem since years :-(
+please help me!
+Thanks
+
+Davide Nitti
