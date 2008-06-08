@@ -1,61 +1,39 @@
-From: Listowner <listowner@johnbrown.com.au>
-Subject: No servers were defined in the configuration error during boot after
- editing gdm.conf
-Date: Sun, 01 Jun 2008 10:02:20 +1000
-Message-ID: <4841E70C.9000905@johnbrown.com.au>
+From: "mohammed shareef" <mdshareef@gmail.com>
+Subject: x11 fails with floating point exception
+Date: Sun, 8 Jun 2008 15:33:59 +0530
+Message-ID: <a1d91fa0806080303w470fe13eo59387e7d21d3fa2b@mail.gmail.com>
 Mime-Version: 1.0
 Content-Transfer-Encoding: 7bit
 Return-path: <linux-x11-owner@vger.kernel.org>
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=gamma;
+        h=domainkey-signature:received:received:message-id:date:from:to
+         :subject:mime-version:content-type:content-transfer-encoding
+         :content-disposition;
+        bh=va5EisDpGaYf5aOLoefDH0ZnuGLKFJWUBPYlurreOJ0=;
+        b=wDLQV5bjlkERcwFqIFAXinJmvcDCNljOz4j/8TRBod0xR3H/q9kDY4FCiSfZL4gr75
+         a1UYJ57TMxyyhlfKE5NAGNhjijOQkjyUKYIj2yzck++pK+Tj4HuZxCc4AXQ2LL4IEghQ
+         lF9RtUzKFK59eSDQiup+50fiaJheSHMCwAiTc=
+Content-Disposition: inline
 Sender: linux-x11-owner@vger.kernel.org
 List-ID: <linux-x11.vger.kernel.org>
-Content-Type: text/plain; charset="us-ascii"; format="flowed"
+Content-Type: text/plain; charset="us-ascii"
 To: linux-x11@vger.kernel.org
 
+Hi,
 
-In Ubuntu Hardy (with all updates installed on a VIA EPIA EN12000
-fanless mythtv frontend using openchrome drivers installed by Hardy) I
-accidentally edited gdm.conf instead of gdm.conf-custom when setting up
-an automatic default timed login.
+i am new to linux.
 
-Now, instead of getting the normal ubuntu login screen, I am getting a
-high contrast black and white cross-hashed screen, with the following
-error message in a text dialog box"
+when i compile x-windows, the xlib--X11 fails with a floating point exception.
 
-"No servers were defined in the configuration file and XDMCP was
-disabled. This can only be a configuration error..." If I click OK the
-screen flickers a few times and returns to the same state.
+../src/util/makekeys < /usr/include/X11/keysymdef.h > ks_tables_h
+/bin/sh: line 1: 12048 Floating point exception../src/util/makekeys <
+/usr/include/X11/keysymdef.h > ks_tables_h
+make[1]: *** [ks_tables.h] Error 136
+make[1]: Leaving directory `/root/omap5912/xwin_snapshot/xlibs/X11/src'
+make: *** [install-recursive] Error 1
 
-I have tried rebooting into recovery mode, dropping into a shell, and
-restoring the previously working versions of gdm.conf and
-gdm.conf-custom, but (distressingly) the fault remained.
+could someone please tell me how to solve this
 
-I've also tried:
-
-dpkg-reconfigure gdm
-
-... which ran without any errors, but the fault remained unchanged.
-
-dpkg-reconfigure xserver-xorg
-
-... which ran without error. On reboot I got an error saying that no
-monitor was defined. So I reinstated the previous xorg.conf, which the
-resulted in the original error returning. Note: while I had made changes
-to xorg.conf earlier in the day, the version I reinstated was working
-fine before the current problems started, so I don't think the problem
-is in xorg.conf
-
-In desperation I also tried dpkg-reconfigure on a list of gnome packages
-  suggested on one web page, to no avail.
-
-I'd like to avoid a complete reinstall, because I have just finished
-building this box on Hardy, and don't really want to start again from
-scratch! Any suggestions will be gratefully appreciated!
-
-John
-
-
-
-
-
--
-
+thank you,
+Shareef
