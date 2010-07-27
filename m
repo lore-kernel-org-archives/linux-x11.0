@@ -1,74 +1,34 @@
-From: mafeusek@gmail.com
-Subject: screen rotation - some questions.
-Date: Mon, 28 Jun 2010 22:12:56 +0200
-Message-ID: <umt4oceuncfr.fsf@gmail.com>
+From: Samuel Xu <samuel.xu.tech@gmail.com>
+Subject: Question on libpixman's PIXMAN_FB_ACCESSORS
+Date: Tue, 27 Jul 2010 08:59:51 +0800
+Message-ID: <AANLkTi=yf-Rc6CZzxkCRzvcQD8cUnKWf8bTsCzamTFDJ@mail.gmail.com>
 Mime-Version: 1.0
+Content-Transfer-Encoding: QUOTED-PRINTABLE
 Return-path: <linux-x11-owner@vger.kernel.org>
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=gamma;
-        h=domainkey-signature:received:received:to:subject:x-mailer
-         :organization:from:date:message-id:user-agent:mime-version
-         :content-type;
-        bh=K+yyXUm1kO/FSblSR33gzLO1ZNvF9sQoQFlzBryYbwM=;
-        b=RvLl33+c4kSCGsAF1PS+/ubKf5A86fiK59vWrEwsQfFQHD89fLyMqgZ5+K6/wr0yEg
-         aMNPtOcGHYS5y0MvoB6+CEhvtXuqSp4MxCd7LDqC+kBI2ArPFsIWh113jyUH4HSxct56
-         Z3oBMnsEe72fqHVO4KEVA2X4UG8YRHfwkcp7Q=
+        h=domainkey-signature:mime-version:received:received:date:message-id
+         :subject:from:to:content-type:content-transfer-encoding;
+        bh=7C5RP0wV1BN7JnepGrD2o5IYjnWYEgNbBHOHH+u//5Y=;
+        b=GGuPpMNrrsnz2NmT3gfaIDZlE/hQpbv+6etT4LQfGfbx1XUoSA/X2SGsf7XAOcIUji
+         qtnx6vz3vfvvo8gTnajD3EveRwxWn2PlOMU1BvvS71yAqXUwg/0Bl9wSxoev6HWhvo6X
+         HYaFrWJ30Y2uNwjO0Amqk1s4TrC690FIEa3i0=
 Sender: linux-x11-owner@vger.kernel.org
 List-ID: <linux-x11.vger.kernel.org>
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="windows-1252"
 To: linux-x11@vger.kernel.org
 
-Hallo Group Members
+I noticed the PIXMAN_FB_ACCESSORS might not be defined/enabled for
+pixman lib in current build.
+inside pixman-accessor.h
+#ifdef PIXMAN_FB_ACCESSORS
+=2E..
+#else
+=2E.
+#endif
 
-I try to rotate screen on my old PIII 1Ghz.
+Could any kindly share viewpoint of PIXMAN_FB_ACCESSORS? E.g. Is it
+obsolete or it only can be enabled for some platform with specific HW,
+so some low-end platform can=92t turn it on?
 
-I have following built in graphics card:
-$ lspci
-...
-00:02.0 VGA compatible controller: Intel Corporation 82815 Chipset
-Graphics Controller (CGC) (rev 04)
-...
-
-Unfortunately nothing of following works:
-$ xrandr -o right
-X Error of failed request:  BadMatch (invalid parameter attributes)
-  Major opcode of failed request:  150 (RANDR)
-  Minor opcode of failed request:  2 (RRSetScreenConfig)
-  Serial number of failed request:  14
-  Current serial number in output stream:  14
-$ xrandr -o left
-X Error of failed request:  BadMatch (invalid parameter attributes)
-  Major opcode of failed request:  150 (RANDR)
-  Minor opcode of failed request:  2 (RRSetScreenConfig)
-  Serial number of failed request:  14
-  Current serial number in output stream:  14
-
-/etc/X11/xorg.conf:
-Section "Device"
-...
-	Option "RandRRotation" "True"
-	Option "Rotate" "CW"
-...
-
-/var/log/Xorg.0.log:
-...
-(**) intel(0): DPMS enabled
-(II) intel(0): [DRI] installation complete
-(II) intel(0): Direct rendering enabled
-(WW) intel(0): Option "RandRRotation" is not used
-(WW) intel(0): Option "Rotate" is not used
-(==) RandR enabled
-...
-
-$ uname -a
-Linux myPC 2.6.32-22-generic #36-Ubuntu SMP Thu Jun 3 22:02:19 UTC 2010 i686 GNU/Linux
-
-
-Did anyone manage to rotate screen on this hardware?
-
-I also have a chance to get Radeon 9200 SE agp card. Does this one allow
-for screen rotation?
-
-best regards,
-Pawel
+Thanks!
